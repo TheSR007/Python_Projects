@@ -116,6 +116,7 @@ class MainWindow(QWidget):
 
         self.image_label = QLabel() #to show the img of videos
         self.image_label.setFixedSize(400, 400)
+        self.image_label.setScaledContents(True)
         self.Hlayout.addWidget(self.image_label)
 
         # self.Gbutton =  QPushButton("GO")   #to go in that link
