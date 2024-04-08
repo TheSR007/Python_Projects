@@ -217,14 +217,17 @@ class MainWindow(QWidget):
 
     def set_image(self, image_url): #getting the img using requests and loading it using pixmap
         pixmap = QPixmap()
-        response = requests.get(image_url)
-        if response.status_code == 200:
-            image_data = response.content
-            pixmap.loadFromData(image_data)
-            self.image_label.setPixmap(pixmap)
-            self.image_label.setAlignment(Qt.AlignCenter)
-        else:
-            print("Error loading image:", response.status_code)
+        try:
+            response = requests.get(image_url)
+            if response.status_code == 200:
+                image_data = response.content
+                pixmap.loadFromData(image_data)
+                self.image_label.setPixmap(pixmap)
+                self.image_label.setAlignment(Qt.AlignCenter)
+            else:
+                print("Error loading image:", response.status_code)
+        except Exception as e:
+            print("An error occurred:", str(e))
 
     def Play(self): #the play button trigger will give 3 options
         #  using iframe in the python window mainly used in Embed and iframes
